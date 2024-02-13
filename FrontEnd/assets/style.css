@@ -46,6 +46,9 @@ table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
+* {
+	box-sizing: border-box;
+}
 /** end reset css**/
 body {
 	max-width: 1140px;
@@ -53,6 +56,7 @@ body {
 	font-family: 'Work Sans' ;
 	font-size: 14px;
 	background-color: #FFFEF8;
+
 }
 header {
 	display: flex;
@@ -99,6 +103,20 @@ nav li {
 li:hover {
 	color: #B1663C;
 }
+
+.navLink {
+	text-decoration: none;
+	color: black;
+}
+
+.navLink:hover {
+	color: #B1663C;
+}
+
+.navLink:visited {
+	color: rgba(0, 0, 0, 0);
+}
+
 #introduction {
 	display: flex;
 	align-items: center;
@@ -128,7 +146,7 @@ li:hover {
 }
 
 /* Ajout de classe pour les categories */
-.divTri {
+.barTri {
 	display: flex;
 	flex-direction: row;
 	justify-content: center;
@@ -137,7 +155,7 @@ li:hover {
 	margin-bottom: 40px;
 }
 
-.tri {
+.btnTri {
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -154,7 +172,7 @@ li:hover {
 	height: 37px;
 }
 
-.tri:hover {
+.btnTri:hover {
 	cursor: pointer;
 	background-color: #1D6154;
 	color: #FFFEF8;
@@ -214,9 +232,59 @@ input[type="submit"]{
 	border-radius: 60px ;
 }
 
+footer {
+	width: 1140px;
+	position: fixed;
+	bottom: 0;
+	background-color: white;
+	margin: 0;
+
+}
+
 footer nav ul {
 	display: flex;
 	justify-content: flex-end;
-	margin: 2em
+	margin: 2em;
 }
 
+
+/* Style pour le login */
+
+#login {
+	width: 50%;
+	margin: auto;
+}
+#login > * {
+	text-align: center;
+
+}
+#login h2{
+	margin-bottom: 20px;
+}
+#login form {
+	text-align: left;
+	margin-top:30px;
+	display: flex;
+	flex-direction: column;
+}
+
+#login input {
+	height: 50px;
+	font-size: 1.2em;
+	border: none;
+	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+}
+#login label {
+	margin: 2em 0 1em 0;
+}
+#login textarea {
+	border: none;
+	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+}
+
+.mdpLogin {
+	color: black;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}

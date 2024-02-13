@@ -1,3 +1,4 @@
+
 (async () => {
   const reponseWorks = await fetch("http://localhost:5678/api/works");
   const works = await reponseWorks.json();
@@ -6,6 +7,8 @@
   const reponseCategory = await fetch("http://localhost:5678/api/categories");
   const categories = await reponseCategory.json();
   genererTri(categories, works);
+
+
 
 })
   ();
@@ -41,11 +44,11 @@ function genererTri(categories, works) {
   const sectionPortfolio = document.getElementById("portfolio");
   const sectionGallery = document.querySelector(".gallery");
   const divBar = document.createElement("div");
-  divBar.className = "divTri";
+  divBar.className = "barTri";
   const btnTous = document.createElement("button");
   btnTous.innerHTML = "Tous";
   divBar.appendChild(btnTous);
-  btnTous.classList.add("tri");
+  btnTous.classList.add("btnTri");
 
   for (let i = 0; i < categories.length; i++) {
     const tabTri = categories[i];
@@ -53,15 +56,15 @@ function genererTri(categories, works) {
     btnTri.innerHTML = tabTri.name;
     sectionPortfolio.appendChild(divBar);
     divBar.appendChild(btnTri);
-    btnTri.className = "tri";
+    btnTri.className = "btnTri";
 
     btnTri.addEventListener("click", () => {
-        const imagesFiltrees = works.filter(function (image) {
-          return image.categoryId === tabTri.id;
-        });
-        genererGallery(imagesFiltrees);
-        console.log("Catégorie sélectionnée:", tabTri.id);
-        console.log("Images filtrées:", imagesFiltrees);
+      const imagesFiltrees = works.filter(function (image) {
+        return image.categoryId === tabTri.id;
+      });
+      genererGallery(imagesFiltrees);
+      console.log("Catégorie sélectionnée:", tabTri.id);
+      console.log("Images filtrées:", imagesFiltrees);
     });
   }
   btnTous.addEventListener("click", () => {
@@ -70,6 +73,8 @@ function genererTri(categories, works) {
   });
   sectionPortfolio.insertBefore(divBar, sectionGallery);
 }
+
+
 
 
 
