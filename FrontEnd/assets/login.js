@@ -1,3 +1,5 @@
+
+
 //Formulaire de Login
 
 async function requeteLogin() {
@@ -6,8 +8,8 @@ async function requeteLogin() {
     event.preventDefault();
     // Création de la requête
     const login = {
-      user: event.target.querySelector("[name=email]").value,
-      password: event.target.querySelector("[name=mdp]").value
+      email: event.target.email.value,
+      password: event.target.mdp.value
     };
     console.log(login);
 
@@ -23,13 +25,14 @@ async function requeteLogin() {
         body: chargeUtile
       });
 
-      if (response.ok) {
+      if (response.status === 200) {
         // Récupération du token depuis l'API
         const tokenData = await response.json();
-        const userToken = JSON.stringify(tokenData);
+        const userToken = tokenData.token;
         // Stockage du token dans le localStorage
         window.localStorage.setItem("token", userToken);
-        console.log("Token récupéré avec succès :", tokenData);
+        console.log("Token récupéré avec succès :", userToken);
+        RedirectionAdminMode ();
       } else {
         console.error("Échec de la récupération du token");
       }
@@ -39,11 +42,11 @@ async function requeteLogin() {
   });
 }
 
+function RedirectionAdminMode (){ 
+  document.location.href="../index.html";
+}
 // Appel de la fonction requeteLogin pour gérer la soumission du formulaire de login
 requeteLogin();
-
-
-
 
 
 
