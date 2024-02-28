@@ -1,6 +1,5 @@
 
-/* import requeteLogin from "./login.js"; */
-//Récupération des données du login
+
 
 (async () => {
   const reponseWorks = await fetch("http://localhost:5678/api/works");
@@ -11,60 +10,25 @@
   const categories = await reponseCategory.json();
   genererTri(categories, works);
 
-  const body = document.querySelector("body");
-  const header = document.querySelector("header");
-  
-  
-  const banniereEdition = document.createElement("div");
-  const banniereEditionText = document.createElement("p");
-  const banniereEditionIcon = document.createElement("img");
-  
-  banniereEdition.className = "banniereEdition";
-  banniereEditionIcon.className ="banniereEditionIcon";
-  
-  document.body.appendChild(banniereEdition);
-  banniereEdition.appendChild(banniereEditionText);
-  body.insertBefore(banniereEdition, header);
-  banniereEdition.appendChild(banniereEditionIcon);
-  
-  banniereEditionText.textContent ="Mode édition";
-  banniereEditionText.className = "banniereEditionText";
-  banniereEditionIcon.src = "./assets/icons/Vector.svg";
-  banniereEditionIcon.alt = "icone de l'édition";
-  
-  const sectionGallery = document.querySelector(".gallery");
-  const sectionPortfolio = document.getElementById("portfolio");
-  
-  const divModifier = document.createElement("div");
-  const sectionPortfolioIcon = document.createElement("img");
-  const sectionPortfolioIconText = document.createElement("a");
-  
-  divModifier.className = "divModifier";
-  sectionPortfolioIconText.className = "divModifierText";
-  divModifier.appendChild(sectionPortfolioIcon);
-  divModifier.appendChild(sectionPortfolioIconText);
-  sectionPortfolioIcon.src =  "./assets/icons/Modif.svg";
-  sectionPortfolioIconText.innerHTML ="Modifier";
-  
-  const logout = document.querySelector(".navLink");
-  logout.textContent = "logout";
-  sectionPortfolioIcon.className = "divModifierImg";
-  sectionPortfolio.insertBefore(divModifier, sectionGallery);
-  
-  const navBar = document.querySelector(".barTri");
-  navBar.style.display = "none";
-
-  const btnModifier = document.querySelector(".divModifierText");
-  btnModifier.addEventListener("click",() =>{
-      AfficherModale ();
-  });
-
-/* 
-  const divModifierLink = document.createElement("a");
-  divModifier.appendChild(divModifierLink);
- */
+ const token = window.localStorage.getItem("token");
+  tokenTrouve(token);
 })
   ();
+
+
+
+
+
+
+function tokenTrouve(token) {
+   
+  if (token === null) {
+    console.log("Aucun token trouvé dans le localStorage");
+  } else {
+    console.log("Token présent :", token);
+    AfficherPageAdmin();
+  }
+}
 
 
 
@@ -72,7 +36,7 @@
 
 function genererGallery(works) {
   const sectionGallery = document.querySelector(".gallery");
-  sectionGallery.innerHTML = "";
+
 
   for (let i = 0; i < works.length; i++) {
     const gallery = works[i];
@@ -93,7 +57,7 @@ function genererGallery(works) {
 }
 
 
-//Affichage des Works et les trie
+//Affichage des Works et le tri
 
 function genererTri(categories, works) {
   const sectionPortfolio = document.getElementById("portfolio");
@@ -130,7 +94,7 @@ function genererTri(categories, works) {
 }
 
 
-function AfficherModale () {
+function AfficherModale() {
   //creation des éléments de la modale à afficher
   const modale = document.createElement("aside");
   const modaleWrapper = document.createElement("div");
@@ -148,22 +112,73 @@ function AfficherModale () {
   modaleWrapperTitle.className = "modaleWrapperTitle";
   modaleWrapperGallery.className = "modaleWrapperGallery";
   modaleWrapperBtn.className = "modaleWrapperBtn";
- 
-  modaleWrapperTitle.innerHTML =  "Galerie photo";
+
+  modaleWrapperTitle.innerHTML = "Galerie photo";
 
   modaleWrapperBtn.innerHTML = "Ajouter une photo";
+
+}
+
+function AfficherPageAdmin() {
+
+  const body = document.querySelector("body");
+  const header = document.querySelector("header");
+
+
+  const banniereEdition = document.createElement("div");
+  const banniereEditionText = document.createElement("p");
+  const banniereEditionIcon = document.createElement("img");
+
+  banniereEdition.className = "banniereEdition";
+  banniereEditionIcon.className = "banniereEditionIcon";
+
+  document.body.appendChild(banniereEdition);
+  banniereEdition.appendChild(banniereEditionText);
+  body.insertBefore(banniereEdition, header);
+  banniereEdition.appendChild(banniereEditionIcon);
+
+  banniereEditionText.textContent = "Mode édition";
+  banniereEditionText.className = "banniereEditionText";
+  banniereEditionIcon.src = "./assets/icons/Vector.svg";
+  banniereEditionIcon.alt = "icone de l'édition";
+
+  const sectionGallery = document.querySelector(".gallery");
+  const sectionPortfolio = document.getElementById("portfolio");
+
+  const divModifier = document.createElement("div");
+  const sectionPortfolioIcon = document.createElement("img");
+  const sectionPortfolioIconText = document.createElement("a");
+
+  divModifier.className = "divModifier";
+  sectionPortfolioIconText.className = "divModifierText";
+  divModifier.appendChild(sectionPortfolioIcon);
+  divModifier.appendChild(sectionPortfolioIconText);
+  sectionPortfolioIcon.src = "./assets/icons/Modif.svg";
+  sectionPortfolioIconText.innerHTML = "Modifier";
+
+  const logout = document.querySelector(".navLink");
+  logout.textContent = "logout";
+  sectionPortfolioIcon.className = "divModifierImg";
+  sectionPortfolio.insertBefore(divModifier, sectionGallery);
+
+  const navBar = document.querySelector(".barTri");
+  navBar.style.display = "none";
+
+  const btnModifier = document.querySelector(".divModifierText");
+  btnModifier.addEventListener("click", () => {
+    AfficherModale();
+  });
 
 }
 
 
 
 
-//Ajout des elements de la page Admin dans le Html
-/* if (requeteLogin() === true) {
 
 
 
-}  */
+
+
 
 
 

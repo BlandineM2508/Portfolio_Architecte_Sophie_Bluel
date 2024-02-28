@@ -32,6 +32,7 @@ async function requeteLogin() {
         // Stockage du token dans le localStorage
         window.localStorage.setItem("token", userToken);
         console.log("Token récupéré avec succès :", userToken);
+        window.localStorage.getItem("token");
         RedirectionAdminMode ();
       } else {
         console.error("Échec de la récupération du token");
