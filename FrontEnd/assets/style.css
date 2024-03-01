@@ -111,10 +111,12 @@ li:hover {
 .navLink {
 	text-decoration: none;
 	color: black;
+	
 }
 
 .navLink:hover {
 	color: #B1663C;
+	cursor: pointer;
 }
 
 .navLink:visited {
@@ -324,7 +326,6 @@ footer nav ul {
 
 
 .marginHeader {
-
 	margin: 90px 0px 0px 0px;
 }
 
@@ -373,7 +374,7 @@ footer nav ul {
 	flex-direction: column;
 	overflow: auto;
 	width: 630px;
-	height: 600px;
+	height: 688px;
 	border-radius: 10px;
 	position: fixed;
 	background-color: #FFFEF8;
@@ -390,7 +391,7 @@ footer nav ul {
 	line-height: 30px;
 	letter-spacing: 0em;
 	text-align: center;
-	padding: 30px;
+	padding: 50px 0px 40px 0px;
 
 }
 
@@ -400,7 +401,7 @@ footer nav ul {
 	align-items: center;
 	width: 300px;
 	height: 300px;
-	background-color: #B1663C;
+	
 }
 
 .modaleWrapperBtn {
@@ -422,4 +423,20 @@ footer nav ul {
 	margin-top: 120px;
 
 
+}
+
+.cross {
+	display: flex;
+	width: 12px;
+	height: 12px;
+	position: absolute;
+	top: 25px;
+	right: 25px;
+	cursor: pointer;
+}
+
+.modalImg {
+	display: flex;
+	width: 30px;
+	height: 30px;
 }

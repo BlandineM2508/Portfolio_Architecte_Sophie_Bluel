@@ -10,8 +10,10 @@
   const categories = await reponseCategory.json();
   genererTri(categories, works);
 
- const token = window.localStorage.getItem("token");
+  const token = window.localStorage.getItem("token");
   tokenTrouve(token);
+
+
 })
   ();
 
@@ -19,13 +21,15 @@
 
 
 
-
 function tokenTrouve(token) {
-   
+
   if (token === null) {
+    const marginHeader = document.querySelector(".marginHeader");
+    marginHeader.style.margin = "50px";
     console.log("Aucun token trouvé dans le localStorage");
   } else {
     console.log("Token présent :", token);
+
     AfficherPageAdmin();
   }
 }
@@ -36,7 +40,7 @@ function tokenTrouve(token) {
 
 function genererGallery(works) {
   const sectionGallery = document.querySelector(".gallery");
-
+  sectionGallery.innerHTML = "";
 
   for (let i = 0; i < works.length; i++) {
     const gallery = works[i];
@@ -60,6 +64,7 @@ function genererGallery(works) {
 //Affichage des Works et le tri
 
 function genererTri(categories, works) {
+
   const sectionPortfolio = document.getElementById("portfolio");
   const sectionGallery = document.querySelector(".gallery");
   const navBar = document.createElement("div");
@@ -94,7 +99,11 @@ function genererTri(categories, works) {
 }
 
 
-function AfficherModale() {
+
+
+
+ function AfficherModale() {
+
   //creation des éléments de la modale à afficher
   const modale = document.createElement("aside");
   const modaleWrapper = document.createElement("div");
@@ -102,22 +111,54 @@ function AfficherModale() {
   modale.appendChild(modaleWrapper);
   modale.className = "modale";
   modaleWrapper.className = "modaleWrapper";
+  const cross = document.createElement("img");
+  cross.src = "./assets/icons/cross.svg";
+
+  modalImg = document.createElement("img");
+  modalImg.className = "modalImg";
+  const gallery  = ("http://localhost:5678/api/works");
+
+  modalImg.src = gallery.images;
+  console.log(gallery);
+
 
   const modaleWrapperTitle = document.createElement("h2");
   const modaleWrapperBtn = document.createElement("button");
   const modaleWrapperGallery = document.createElement("div");
+  modaleWrapper.appendChild(cross);
   modaleWrapper.appendChild(modaleWrapperTitle);
   modaleWrapper.appendChild(modaleWrapperGallery);
+  modaleWrapperGallery.appendChild(modalImg);
   modaleWrapper.appendChild(modaleWrapperBtn);
+
+
+
+
   modaleWrapperTitle.className = "modaleWrapperTitle";
   modaleWrapperGallery.className = "modaleWrapperGallery";
   modaleWrapperBtn.className = "modaleWrapperBtn";
+  cross.className = "cross";
 
   modaleWrapperTitle.innerHTML = "Galerie photo";
 
   modaleWrapperBtn.innerHTML = "Ajouter une photo";
 
+  const btnCross = document.querySelector(".cross");
+
+  btnCross.addEventListener("click", () => {
+    modale.style.display = "none";
+  });
+
+
 }
+
+
+const btnLogin = document.querySelector(".navLink");
+btnLogin.addEventListener("click", () => {
+  document.location.href = "./assets/login.html";
+});
+
+
 
 function AfficherPageAdmin() {
 
@@ -158,17 +199,27 @@ function AfficherPageAdmin() {
 
   const logout = document.querySelector(".navLink");
   logout.textContent = "logout";
+
   sectionPortfolioIcon.className = "divModifierImg";
   sectionPortfolio.insertBefore(divModifier, sectionGallery);
 
+
+
+  logout.addEventListener("click", () => {
+    document.location.href = "index.html";
+    window.localStorage.removeItem("token");
+
+    console.log("Token supprimé");
+  });
+
   const navBar = document.querySelector(".barTri");
   navBar.style.display = "none";
+
 
   const btnModifier = document.querySelector(".divModifierText");
   btnModifier.addEventListener("click", () => {
     AfficherModale();
   });
-
 }
 
 
@@ -182,3 +233,8 @@ function AfficherPageAdmin() {
 
 
 
+
+
+
+
+ 
