@@ -43,6 +43,8 @@ function genererGallery(works) {
   sectionGallery.innerHTML = "";
 
   for (let i = 0; i < works.length; i++) {
+
+    //homePage
     const gallery = works[i];
 
     const figureElement = document.createElement("figure");
@@ -55,10 +57,42 @@ function genererGallery(works) {
     figureElement.appendChild(imageElement);
     figureElement.appendChild(captionElement);
     sectionGallery.appendChild(figureElement);
+
+
+    //gallery 
+
+    const modaleWrapperGallery = document.querySelector('.modaleWrapperGallery');
+
+    const imgModale = document.createElement("img");
+    imgModale.className = "modalImg";
+    imgModale.src = gallery.imageUrl;
+
+    modaleWrapperGallery.appendChild(imgModale);
+    const imgTrash = document.createElement("img");
+    imgTrash.src = "./assets/icons/trash.svg";
+    imgTrash.className = "imgTrash";
+    imgModale.appendChild(imgTrash);
+
+
+    const modaleWrapperBtnAjout = document.querySelector(".modaleWrapperBtn");
+    modaleWrapperBtnAjout.addEventListener("click", () => {
+      const modaleWrapperTitle = document.querySelector(".modaleWrapperTitle");
+      modaleWrapperTitle.innerHTML = "Ajout photo";
+      modaleWrapperGallery.style.display = "none";
+      modaleWrapper = document.querySelector(".modaleWrapper");
+      const rectangle = document.createElement("div");
+      modaleWrapperTitle.after(rectangle);
+      rectangle.className = "rectangle";
+      console.log("bouton cliqué");
+    
+    });
+    
   }
 
 
 }
+
+
 
 
 //Affichage des Works et le tri
@@ -101,50 +135,13 @@ function genererTri(categories, works) {
 
 
 
-
  function AfficherModale() {
 
-  //creation des éléments de la modale à afficher
-  const modale = document.createElement("aside");
-  const modaleWrapper = document.createElement("div");
-  document.body.appendChild(modale);
-  modale.appendChild(modaleWrapper);
-  modale.className = "modale";
-  modaleWrapper.className = "modaleWrapper";
-  const cross = document.createElement("img");
-  cross.src = "./assets/icons/cross.svg";
 
-  modalImg = document.createElement("img");
-  modalImg.className = "modalImg";
-  const gallery  = ("http://localhost:5678/api/works");
+  const modale = document.querySelector('.modale')
+  modale.style.display = "flex"
 
-  modalImg.src = gallery.images;
-  console.log(gallery);
-
-
-  const modaleWrapperTitle = document.createElement("h2");
-  const modaleWrapperBtn = document.createElement("button");
-  const modaleWrapperGallery = document.createElement("div");
-  modaleWrapper.appendChild(cross);
-  modaleWrapper.appendChild(modaleWrapperTitle);
-  modaleWrapper.appendChild(modaleWrapperGallery);
-  modaleWrapperGallery.appendChild(modalImg);
-  modaleWrapper.appendChild(modaleWrapperBtn);
-
-
-
-
-  modaleWrapperTitle.className = "modaleWrapperTitle";
-  modaleWrapperGallery.className = "modaleWrapperGallery";
-  modaleWrapperBtn.className = "modaleWrapperBtn";
-  cross.className = "cross";
-
-  modaleWrapperTitle.innerHTML = "Galerie photo";
-
-  modaleWrapperBtn.innerHTML = "Ajouter une photo";
-
-  const btnCross = document.querySelector(".cross");
-
+  const btnCross = document.querySelector('.cross')
   btnCross.addEventListener("click", () => {
     modale.style.display = "none";
   });

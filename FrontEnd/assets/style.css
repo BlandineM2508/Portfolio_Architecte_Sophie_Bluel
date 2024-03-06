@@ -346,6 +346,7 @@ footer nav ul {
 .divModifierText {
 	cursor: pointer;
 	position: absolute;
+	z-index: 0;
 	left: 63%;
 	top: -55px;
 	color: black;
@@ -355,7 +356,8 @@ footer nav ul {
 /* Modale */
 
 .modale {
-	display: flex;
+	display: none;
+	z-index: 1;
 	justify-content: center;
 	align-items: center;
 	position: fixed;
@@ -372,12 +374,15 @@ footer nav ul {
 	display: flex;
 	align-items: center;
 	flex-direction: column;
+	justify-content: center;
 	overflow: auto;
 	width: 630px;
 	height: 688px;
 	border-radius: 10px;
 	position: fixed;
 	background-color: #FFFEF8;
+	
+
 }
 
 .modaleWrapperTitle {
@@ -391,18 +396,24 @@ footer nav ul {
 	line-height: 30px;
 	letter-spacing: 0em;
 	text-align: center;
-	padding: 50px 0px 40px 0px;
+	padding: 0px 0px 40px 0px;
 
 }
 
 .modaleWrapperGallery {
 	display: flex;
-	justify-content: center;
+	gap: 10px;
+	
+	flex-wrap: wrap;
+	justify-content: flex-start;
 	align-items: center;
-	width: 300px;
-	height: 300px;
+	width: 420px;
+	height: 380px;
 	
 }
+
+
+
 
 .modaleWrapperBtn {
 	display: flex;
@@ -420,10 +431,22 @@ footer nav ul {
 	line-height: 17px;
 	letter-spacing: 0em;
 	text-align: center;
-	margin-top: 120px;
-
+	margin-top: 90px;
+	position: relative;
+	cursor: pointer;
 
 }
+
+.modaleWrapperBtn::after {
+	content: "";
+	border-bottom: 1px solid #B3B3B3;
+	position: absolute;
+	bottom: 75px;
+	width: 420px;
+}
+
+
+
 
 .cross {
 	display: flex;
@@ -436,7 +459,24 @@ footer nav ul {
 }
 
 .modalImg {
+	position: relative;
+	width: 76px;
+	height: 102px;
+}
+
+.imgTrash {
 	display: flex;
-	width: 30px;
-	height: 30px;
+	width: 10px;
+	height: 10px;
+	bottom: 10px;
+	position: absolute;
+	z-index: 1;
+
+}
+
+.rectangle {
+	display: flex;
+	width: 420px;
+	height: 170px;
+	background-color: #E8F1F6;
 }
