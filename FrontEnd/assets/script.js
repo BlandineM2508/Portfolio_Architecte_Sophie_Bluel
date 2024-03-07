@@ -73,25 +73,102 @@ function genererGallery(works) {
     imgTrash.className = "imgTrash";
     imgModale.appendChild(imgTrash);
 
+    imgModale.dataset.id = gallery.id 
 
-    const modaleWrapperBtnAjout = document.querySelector(".modaleWrapperBtn");
-    modaleWrapperBtnAjout.addEventListener("click", () => {
-      const modaleWrapperTitle = document.querySelector(".modaleWrapperTitle");
-      modaleWrapperTitle.innerHTML = "Ajout photo";
-      modaleWrapperGallery.style.display = "none";
-      modaleWrapper = document.querySelector(".modaleWrapper");
-      const rectangle = document.createElement("div");
-      modaleWrapperTitle.after(rectangle);
-      rectangle.className = "rectangle";
-      console.log("bouton cliqué");
-    
-    });
-    
+    imgModale,addEventListener("click", () => {
+      console.log(gallery.id);
+
+      fetch("http://localhost:5678/api/works") + gallery.id , {
+        method: "Delete",
+        headers: {
+          authorization: `bearer ${window.localStorage.getItem("token")}`
+        } 
+      }
+    }).then((res) => {
+      if (res.status === 204){
+        works.find()
+        genererGallery(works)
+        console.log(works)
+      }
+    });  
   }
 
+  const form_container = document.querySelector(".form_container");
+  form_container.style.display = "none";
+  const modaleWrapperBtnAjout = document.querySelector(".modaleWrapperBtn");
 
+  modaleWrapperBtnAjout.addEventListener("click", () => {
+    const modaleWrapperTitle = document.querySelector(".modaleWrapperTitle");
+    modaleWrapperTitle.innerHTML = "Ajout photo";
+    const modaleWrapperGallery = document.querySelector(".modaleWrapperGallery");
+    modaleWrapperGallery.style.display = "none";
+    modaleWrapper = document.querySelector(".modaleWrapper");
+
+    const rectangle = document.createElement("div");
+    modaleWrapperTitle.after(rectangle);
+    rectangle.className = "rectangle";
+
+    const imgPhoto = document.createElement("img");
+    imgPhoto.src = "./assets/icons/photo.svg";
+    imgPhoto.className = "imgPhoto";
+    rectangle.appendChild(imgPhoto);
+    modaleWrapperBtnAjout.style.display = "none";
+    
+    const BtnAjoutPhoto = document.createElement("button");
+    BtnAjoutPhoto.className = "BtnAjoutPhoto";
+    rectangle.appendChild(BtnAjoutPhoto);
+    BtnAjoutPhoto.innerHTML = "+ Ajouter photo";
+
+    const TextRectangle = document.createElement("p");
+    TextRectangle.className = "TextRectangle";
+    rectangle.appendChild(TextRectangle);
+    TextRectangle.innerHTML = "jpg, png : 4mo max";
+
+
+    form_container.style.display ="flex";
+    form_container.className = "form_container";
+    modaleWrapper.appendChild(form_container);
+
+    const form_titre = document.createElement("div");
+    form_titre.className = "form_style";
+    form_container.appendChild(form_titre);
+    form_titre.innerHTML = `
+    <label for="titre">Titre</label>
+    <input type="text" id="titre" name="titre">
+  `;
+
+    const form_categorie = document.createElement("div");
+    form_categorie.classList.add("form_style");
+    form_container.appendChild(form_categorie);
+    form_categorie.innerHTML = `
+    <label for="categorie">Catégorie</label>
+    <input type="text" id="categorie" name="categorie">
+  `;
+
+    const arrow_back = document.createElement("img");
+    arrow_back.src = "./assets/icons/arrow_back.svg";
+    arrow_back.className = "arrow_back";
+    modaleWrapper.appendChild(arrow_back);
+
+    const BtnValider = document.createElement("button");
+    BtnValider.className = "BtnValider";
+    modaleWrapper.appendChild(BtnValider);
+    BtnValider.innerHTML = "Valider";
+
+    arrow_back.addEventListener("click", () => {
+      modaleWrapperGallery.style.display = "flex";
+      modaleWrapperBtnAjout.style.display = "flex";
+      form_container.style.display = "none";
+      TextRectangle.style.display = "none";
+      imgPhoto.style.display = "none";
+      BtnAjoutPhoto.style.display = "none";
+      BtnValider.style.display = "none";
+      rectangle.style.display = "none";
+    });
+    
+
+  });
 }
-
 
 
 
@@ -138,6 +215,7 @@ function genererTri(categories, works) {
  function AfficherModale() {
 
 
+
   const modale = document.querySelector('.modale')
   modale.style.display = "flex"
 
@@ -146,6 +224,12 @@ function genererTri(categories, works) {
     modale.style.display = "none";
   });
 
+  window.addEventListener('click', (event) => {
+    const modale = document.querySelector('.modale');
+    if (event.target === modale) {
+      modale.style.display = "none";
+    }
+  });
 
 }
 

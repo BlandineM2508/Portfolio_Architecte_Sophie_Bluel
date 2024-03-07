@@ -450,8 +450,8 @@ footer nav ul {
 
 .cross {
 	display: flex;
-	width: 12px;
-	height: 12px;
+	width: 15px;
+	height: 15px;
 	position: absolute;
 	top: 25px;
 	right: 25px;
@@ -476,7 +476,129 @@ footer nav ul {
 
 .rectangle {
 	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
 	width: 420px;
 	height: 170px;
 	background-color: #E8F1F6;
+	position: relative;
+}
+
+.imgPhoto {
+	display: flex;
+	width: 68px;
+	height: 59px;
+	
+}
+.arrow_back { 
+	position: absolute;
+	width: 21px;
+	height: 21px;
+	top: 25px;
+	left:25px;
+	cursor: pointer;
+}
+
+.BtnValider {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 237px;
+	height: 36px;
+	border-radius: 60px;
+	background-color: #A7A7A7;
+	color: #FFFEF8;
+	border-style: none;
+	font-family: Syne;
+	font-size: 14px;
+	font-weight: 700;
+	line-height: 17px;
+	letter-spacing: 0em;
+	text-align: center;
+	margin-top: 90px;
+	position: relative;
+	cursor: pointer;
+
+}
+
+.BtnValider::after {
+	content: "";
+	border-bottom: 1px solid #B3B3B3;
+	position: absolute;
+	bottom: 75px;
+	width: 420px;
+}
+
+
+.BtnAjoutPhoto {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 173px;
+	height: 36px;
+	border-radius: 60px;
+	background-color:#CBD6DC;
+	color: #306685;
+	border-style: none;
+	font-family: Syne;
+	font-size: 14px;
+	font-weight: 700;
+	line-height: 17px;
+	letter-spacing: 0em;
+	text-align: center;
+	margin: 15px 0px 10px 0px;
+	position: relative;
+	cursor: pointer;
+
+}
+
+.TextRectangle {
+	display: flex;
+	font-family: Work Sans;
+	font-size: 10px;
+	font-weight: 400;
+	line-height: 12px;
+	letter-spacing: 0em;
+	text-align: center;
+	color: #444444;
+	
+}
+
+.form_container {
+	display: flex; 
+	flex-direction: column;
+	align-items: flex-start;
+	width: 420px;
+	height: 170px;
+	margin-top: 40px;
+
+
+
+}
+
+.form_style {
+	display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;
+	font-family: Work Sans;
+	font-size: 14px;
+	font-weight: 500;
+	line-height: 16px;
+	letter-spacing: 0em;
+	text-align: left;
+	color: #3D3D3D;
+	gap: 10px;
+	margin-bottom: 10px;
+	
+	
+
+}
+
+
+.form_style input {
+	border-style: none;
+	box-shadow: 0px 4px 14px 0px #00000017;
+	width: 420px;
+	height: 51px;
 }
