@@ -58,7 +58,6 @@ function genererGallery(works) {
     figureElement.appendChild(captionElement);
     sectionGallery.appendChild(figureElement);
 
-
     //gallery 
 
     const modaleWrapperGallery = document.querySelector('.modaleWrapperGallery');
@@ -67,31 +66,40 @@ function genererGallery(works) {
     imgModale.className = "modalImg";
     imgModale.src = gallery.imageUrl;
 
-    modaleWrapperGallery.appendChild(imgModale);
+
     const imgTrash = document.createElement("img");
     imgTrash.src = "./assets/icons/trash.svg";
     imgTrash.className = "imgTrash";
     imgModale.appendChild(imgTrash);
 
-    imgModale.dataset.id = gallery.id 
+    imgModale.dataset.id = gallery.id
+    modaleWrapperGallery.appendChild(imgModale);
 
-    imgModale,addEventListener("click", () => {
+    imgModale.addEventListener("click", () => {
       console.log(gallery.id);
 
-      fetch("http://localhost:5678/api/works") + gallery.id , {
-        method: "Delete",
+      fetch("http://localhost:5678/api/works/" + gallery.id, {
+        method: "DELETE",
         headers: {
           authorization: `bearer ${window.localStorage.getItem("token")}`
-        } 
-      }
-    }).then((res) => {
-      if (res.status === 204){
-        works.find()
-        genererGallery(works)
-        console.log(works)
-      }
-    });  
+        }
+      })
+        .then((res) => {
+          if (res.status === 204) {
+            console.log("Supprimé avec succès");
+          }
+        })
+        .catch((error) => {
+          console.error("Erreur lors de la suppression :", error);
+        });
+
+    });
+
   }
+
+
+
+
 
   const form_container = document.querySelector(".form_container");
   form_container.style.display = "none";
@@ -113,7 +121,7 @@ function genererGallery(works) {
     imgPhoto.className = "imgPhoto";
     rectangle.appendChild(imgPhoto);
     modaleWrapperBtnAjout.style.display = "none";
-    
+
     const BtnAjoutPhoto = document.createElement("button");
     BtnAjoutPhoto.className = "BtnAjoutPhoto";
     rectangle.appendChild(BtnAjoutPhoto);
@@ -125,7 +133,7 @@ function genererGallery(works) {
     TextRectangle.innerHTML = "jpg, png : 4mo max";
 
 
-    form_container.style.display ="flex";
+    form_container.style.display = "flex";
     form_container.className = "form_container";
     modaleWrapper.appendChild(form_container);
 
@@ -165,7 +173,7 @@ function genererGallery(works) {
       BtnValider.style.display = "none";
       rectangle.style.display = "none";
     });
-    
+
 
   });
 }
@@ -212,7 +220,7 @@ function genererTri(categories, works) {
 
 
 
- function AfficherModale() {
+function AfficherModale() {
 
 
 
@@ -318,4 +326,3 @@ function AfficherPageAdmin() {
 
 
 
- 
