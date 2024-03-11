@@ -6,6 +6,7 @@ async function requeteLogin() {
   const formUser = document.querySelector(".formLogin");
   formUser.addEventListener("submit", async function (event) {
     event.preventDefault();
+    
     // Création de la requête
     const login = {
       email: event.target.email.value,
