@@ -24,21 +24,23 @@
       <h2 class="modaleWrapperTitle">Galerie photo</h2>
       <div class="modaleWrapperGallery">
       </div>
-      <button class="modaleWrapperBtn">Ajouter une photo</button>
+      <button type="button" class="modaleWrapperBtn">Ajouter une photo</button>
     </div>
 
     
-    <form action="#" method="post" class="form_container" style="display: none;">
+    <form action="#" method="post" class="form_container" enctype="multipart/form-data" style="display: none;">
 
       <h2 class="form_Title">Ajout photo</h2>
 
       <div class="rectangle">
         <img src="./assets/icons/photo.svg" class="imgPhoto">
-        <label for="upload_file" class="upload_file" onchange="handleFileSelect(this)"></label>
-        <input class="input_file" type="file">
-        <button class="BtnAjoutPhoto">+ Ajouter photo</button>
+        <label for="upload_file" class="upload_file"></label>
+        <input type="file" class="input_file" name="input_file" >
+        <button type="button" class="BtnAjoutPhoto">+ Ajouter photo</button>
+        <p class="TextRectangle">jpg, png : 4mo max</p>
+        <div class="file_preview"></div>
       </div>
-      <div class="file_preview"></div>
+      
       <div class="form_style">
         <label for="titre">Titre</label>
         <input type="text" id="titre" name="titre">
@@ -50,9 +52,9 @@
           </option>
         </select>
       </div>
-      <button class="BtnValider">Valider</button>
+      <button type="submit" class="BtnValider">Valider</button>
     </div>
-
+    <div class="error-message"></div>
   </form>
 
   </aside>

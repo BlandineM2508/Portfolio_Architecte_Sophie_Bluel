@@ -496,6 +496,7 @@ footer nav ul {
 	background-color: #E8F1F6;
 	position: relative;
 	margin-bottom: 30px;
+	border-radius: 3px;
 }
 
 
@@ -656,4 +657,22 @@ footer nav ul {
 	text-align: center;
 	margin-bottom: 20px;
 
+}
+
+.file_preview {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	
+}
+
+.file_preview img {
+	width: 420px;
+	height: 170px;
+	object-fit: contain;
+	
+}
+
+.error-message {
+	color: red;
 }
