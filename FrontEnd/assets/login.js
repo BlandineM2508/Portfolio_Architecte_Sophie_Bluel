@@ -1,7 +1,4 @@
-
-
 //Formulaire de Login
-
 async function requeteLogin() {
   const formUser = document.querySelector(".formLogin");
   formUser.addEventListener("submit", async function (event) {
@@ -33,10 +30,11 @@ async function requeteLogin() {
         // Stockage du token dans le localStorage
         window.localStorage.setItem("token", userToken);
         console.log("Token récupéré avec succès :", userToken);
-        window.localStorage.getItem("token");
         RedirectionAdminMode ();
       } else {
         console.error("Échec de la récupération du token");
+         const errorMessage = document.querySelector(".error-message");
+          errorMessage.textContent = "Identifiants invalides";
       }
     } catch (error) {
       console.error("Erreur lors de la récupération du token :", error);
@@ -44,12 +42,13 @@ async function requeteLogin() {
   });
 }
 
+// Redirection vers la page Administrateur
 function RedirectionAdminMode (){ 
   document.location.href="../index.html";
 }
+
 // Appel de la fonction requeteLogin pour gérer la soumission du formulaire de login
 requeteLogin();
-
 
 
 
