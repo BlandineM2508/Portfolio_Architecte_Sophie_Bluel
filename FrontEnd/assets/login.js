@@ -1,3 +1,9 @@
+const token = window.localStorage.getItem("token");
+
+if (token) {
+  document.location.href = "../index.html";
+}
+
 //Formulaire de Login
 async function requeteLogin() {
   const formUser = document.querySelector(".formLogin");

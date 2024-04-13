@@ -178,6 +178,23 @@ li:hover {
 	height: 37px;
 }
 
+.btnActive {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	color: #1D6154;
+	border: #1D6154 1px solid;
+	background-color: red;
+	border-radius: 60px;
+	font-family: Syne;
+	font-size: 16px;
+	font-weight: 700;
+	line-height: 19px;
+	padding: 10px 20px 10px 20px;
+	text-align: center;
+	height: 37px;
+}
+
 .btnTri:hover {
 	cursor: pointer;
 	background-color: #1D6154;

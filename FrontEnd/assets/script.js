@@ -9,6 +9,7 @@ loadCat();
 // Récupération du token dans le storage
 const token = window.localStorage.getItem("token");
 
+
 //Ajout des projets dans la modale
 const modaleWrapperBtn = document.querySelector(".modaleWrapperBtn");
 modaleWrapperBtn.addEventListener("click", AjoutProjet);
@@ -34,14 +35,16 @@ function loadCat() {
   fetch("http://localhost:5678/api/categories")
     .then((res) => res.json())
     .then((data) => {
-      cat = data;
+      data.push({id:0, name:"Tous"})
+      cat  = data;
+      
       genererTri(cat, works);
       tokenTrouve(token);
     })
     .catch((error) => console.error("Erreur lors du chargement des catégories :", error));
 }
 
-// Gestion du token pour acceder à la page admin
+//Gestion du token pour acceder à la page admin 
 function tokenTrouve(token) {
 
   if (token === null) {
@@ -336,12 +339,15 @@ function genererTri(categories, works) {
 
   const sectionPortfolio = document.getElementById("portfolio");
   const sectionGallery = document.querySelector(".gallery");
-  const navBar = document.createElement("div");
-  navBar.className = "barTri";
+   const navBar = document.createElement("div"); 
+ /* navBar.className = "barTri";
   const btnTous = document.createElement("button");
   btnTous.innerHTML = "Tous";
+
+  btnTous.id = 0;
+  
   navBar.appendChild(btnTous);
-  btnTous.classList.add("btnTri");
+   btnTous.classList.add("btnTri"); */
 
   for (let i = 0; i < categories.length; i++) {
     const tabTri = categories[i];
@@ -351,19 +357,28 @@ function genererTri(categories, works) {
     navBar.appendChild(btnTri);
     btnTri.className = "btnTri";
 
+    console.log(tabTri.id)
+
     btnTri.addEventListener("click", () => {
-      const imagesFiltrees = works.filter(function (image) {
-        return image.categoryId === tabTri.id;
-      });
+      let imagesFiltrees = null;
+      if (tabTri.id === 0 ){
+        tabTri.className="btnActive"
+        imagesFiltrees = works
+      } else {
+        imagesFiltrees = works.filter(function (image) {
+          return image.categoryId === tabTri.id;
+        });
+      }
+      
       genererGallery(imagesFiltrees);
       console.log("Catégorie sélectionnée:", tabTri.id);
       console.log("Images filtrées:", imagesFiltrees);
     });
   }
-  btnTous.addEventListener("click", () => {
+ /*  btnTous.addEventListener("click", () => {
     genererGallery(works);
     console.log(works);
-  });
+  }); */
   sectionPortfolio.insertBefore(navBar, sectionGallery);
 
 
