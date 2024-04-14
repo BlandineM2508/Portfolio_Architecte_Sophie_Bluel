@@ -151,6 +151,10 @@ li:hover {
 	margin-bottom: 1em;
 }
 
+.portfolioTitle {
+	margin-top: 5em;
+}
+
 /* Ajout de classe pour les categories */
 .barTri {
 	display: flex;
@@ -195,10 +199,20 @@ li:hover {
 	height: 37px;
 }
 
-.btnTri:hover {
+.btnTri.active {
 	cursor: pointer;
 	background-color: #1D6154;
 	color: #FFFEF8;
+}
+
+.navBar {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	margin: 60px 0px 50px 0px;
+	gap: 15px;
+
 }
 
 .gallery {

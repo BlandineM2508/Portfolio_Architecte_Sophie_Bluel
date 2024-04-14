@@ -35,11 +35,13 @@ function loadCat() {
   fetch("http://localhost:5678/api/categories")
     .then((res) => res.json())
     .then((data) => {
-      data.push({id:0, name:"Tous"})
-      cat  = data;
-      
+    
+      cat = data;
+
       genererTri(cat, works);
       tokenTrouve(token);
+   
+      
     })
     .catch((error) => console.error("Erreur lors du chargement des catégories :", error));
 }
@@ -205,7 +207,7 @@ input.addEventListener("change", (e) => {
   // Vérifier si un fichier est sélectionné
   if (isPngOrJpg(file)) {
     const reader = new FileReader();
-    
+
     reader.onload = function (event) {
       // Créer une balise d'image pour afficher la prévisualisation
       const imgElement = document.createElement("img");
@@ -235,7 +237,7 @@ input.addEventListener("change", (e) => {
     console.log('L\'image n\'est pas au format PNG ou JPG');
     return;
 
-    
+
   }
 
 });
@@ -336,18 +338,31 @@ function FormSubmission(event) {
 
 // Affichage des Works et le tri
 function genererTri(categories, works) {
+  
 
   const sectionPortfolio = document.getElementById("portfolio");
   const sectionGallery = document.querySelector(".gallery");
-   const navBar = document.createElement("div"); 
- /* navBar.className = "barTri";
+  const navBar = document.createElement("div");
+
+  // Création du bouton "Tous" en premier
   const btnTous = document.createElement("button");
   btnTous.innerHTML = "Tous";
-
   btnTous.id = 0;
-  
+  btnTous.className = "btnTri active";
   navBar.appendChild(btnTous);
-   btnTous.classList.add("btnTri"); */
+
+    // Ajout d'un gestionnaire d'événement pour le bouton "Tous"
+    btnTous.addEventListener("click", () => {
+      document.querySelectorAll('.btnTri').forEach(btn => {
+        btn.classList.remove('active');
+      });
+  
+      // Ajout de la classe active au bouton "Tous"
+      btnTous.classList.add('active');
+  
+      genererGallery(works);
+      console.log("Catégorie sélectionnée: Tous");
+    });
 
   for (let i = 0; i < categories.length; i++) {
     const tabTri = categories[i];
@@ -356,29 +371,32 @@ function genererTri(categories, works) {
     sectionPortfolio.appendChild(navBar);
     navBar.appendChild(btnTri);
     btnTri.className = "btnTri";
-
+    navBar.className= "navBar";
     console.log(tabTri.id)
 
     btnTri.addEventListener("click", () => {
+      document.querySelectorAll('.btnTri').forEach(btn => {
+        btn.classList.remove('active');
+      });
+
+      // Ajout de la classe active 
+      btnTri.classList.add('active');
+
       let imagesFiltrees = null;
-      if (tabTri.id === 0 ){
-        tabTri.className="btnActive"
+      if (tabTri.id === 0) {
         imagesFiltrees = works
       } else {
         imagesFiltrees = works.filter(function (image) {
           return image.categoryId === tabTri.id;
         });
       }
-      
+
       genererGallery(imagesFiltrees);
       console.log("Catégorie sélectionnée:", tabTri.id);
       console.log("Images filtrées:", imagesFiltrees);
     });
   }
- /*  btnTous.addEventListener("click", () => {
-    genererGallery(works);
-    console.log(works);
-  }); */
+
   sectionPortfolio.insertBefore(navBar, sectionGallery);
 
 
